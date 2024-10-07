@@ -1,23 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "./components/Container";
 
 function App() {
+  setInterval(()=>(document.title==="Youtube Caption Generator")?document.title="Caption Generator":document.title="Youtube Caption Generator",1000)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App w-screen min-h-screen bg-gray-50 flex justify-center p-10 max-[519px]:p-2">
+      <Container />
     </div>
   );
 }
