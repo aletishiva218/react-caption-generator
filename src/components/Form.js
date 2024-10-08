@@ -13,6 +13,7 @@ const Form = (props) => {
 
     const handleForm = (event) => {
         event.preventDefault();
+        console.log(urlText)
         setClicked(true)
         axios.get(`https://youtube-caption-extractor-api-production.up.railway.app/api/summarizedcaptions?videoUrl=${urlText}`).then(response=>{
             handleResp(response.data)
@@ -24,8 +25,17 @@ const Form = (props) => {
     }
 
     return <div>
-        <form className="flex gap-1 min-[480px]:items-center max-[480px]:flex-col" onSubmit={handleForm}>
-        <input type="text" placeholder="Paste Youtube URL here" className="p-2 outline-0 border-2 rounded-md flex-grow focus:border-blue-600 transition-colors duration-200" onChange={handleUrl}/><button type="submit" className="p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800 transition-colors duration-200 self-center">Generate</button>
+        <form className="space-y-4" onSubmit={handleForm}>
+        <div class="w-full">
+        <label for="url" class="block text-sm sm:text-base lg:text-lg font-medium text-gray-700">Enter YouTube Video URL</label>
+        <input type="text" id="url" name="url" required placeholder="https://www.youtube.com/watch?v=videoID" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base" onChange={handleUrl} />
+      </div>
+      <div class="flex justify-center">
+        <button type="submit"
+                class="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base lg:text-lg">
+          Get Overview
+        </button>
+      </div>
     </form>
     {(clicked)?<span className="text-center p-2 block">Loading...</span>:null}
     </div>;

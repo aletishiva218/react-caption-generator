@@ -1,24 +1,35 @@
-import React,{useState} from "react";
+import React,{useState,Fragment} from "react";
 import Form from "./Form";
 import Response from "./Response";
 
 const Container = (props) => {
     
-    let [resp,setResp] = useState({error:"",introduction:" ",topics:[]});
+    let [resp,setResp] = useState({error:"",summary:" ",topics:[]});
 
     const handleResp = (result) => {
         if(typeof result=="string")
-            setResp({error:result,introduction:" ",topics:[]})
+            setResp({error:result,summary:" ",topics:[]})
         else
-            setResp({error:"",introduction:result.response.introduction,topics:result.response.topics})
+            setResp({error:"",summary:result.response.summary,topics:result.response.topics})
     }
 
-    return <div className="bg-white shadow-md rounded-xl p-5 flex gap-2 flex-col">
-        <h1 className="text-center font-bold text-3xl">YouTube Timestamp Generator</h1>
-        <span className="text-center text-gray-900 text-sm">Generate timestamps for your YouTube videos automatically</span>
-        <Form handleResp={handleResp} />
-        {(resp.error)?<span className="text-red-500 bg-red-100 text-center p-2">{resp.error}</span>:(resp.topics.length===0)?null:<Response introduction={resp.introduction} topics={resp.topics}/>}
-    </div>;
+    return <Fragment>
+    <div class="max-w-xl w-full bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 text-center">
+    Video Overview Fetcher
+    </h1>
+    
+    <Form handleResp={handleResp} />
+    
+    {(resp.error)?<div id="errorMessage" class="mt-6">
+      <h2 class="text-lg sm:text-xl lg:text-2xl font-semibold text-red-600">Error:</h2>
+      <p id="errorText" class="bg-red-50 p-4 rounded-lg border border-red-200 mt-2 text-xs sm:text-sm lg:text-base text-red-700">{resp.error}</p>
+    </div>:null}
+  </div>
+
+{(resp.topics.length===0)?null:<Response summary={resp.summary} topics={resp.topics}/>}
+  </Fragment>
+
 }
 
 export default Container;
