@@ -33,7 +33,7 @@ const Form = (props) => {
       <div class="flex justify-center">
         <button type="submit"
                 class="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-sm sm:text-base lg:text-lg">
-          Get Overview
+          Generate
         </button>
       </div>
     </form>

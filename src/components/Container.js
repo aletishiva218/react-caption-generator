@@ -16,7 +16,7 @@ const Container = (props) => {
     return <Fragment>
     <div class="max-w-xl w-full bg-white shadow-lg rounded-lg p-8">
     <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 text-center">
-    Video Overview Fetcher
+    YouTube Timestamp and Video Summary Generator
     </h1>
     
     <Form handleResp={handleResp} />
